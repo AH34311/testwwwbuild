@@ -1,5 +1,5 @@
 class testwwwbuild::basedirectories {
-  $directories = lookup('testwwwbuild::directories', {
+  $directories = lookup('testwwwbuild::basedirectories', {
     default_value => [],
   })
 
