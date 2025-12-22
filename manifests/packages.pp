@@ -1,6 +1,10 @@
 class testwwwbuild::packages {
-  $base_packages = ['telnet','unzip','wget','postfix']
-  package { $base_packages:
-    ensure => 'present',
+  $packages = lookup('testwwwbuild::package_list', {
+      default_value => [],
+  })
+  $packages.each |String $package| {
+    package { $packages:
+      ensure => present,
+    }
   }
 }
