@@ -1,0 +1,11 @@
+/var/log/httpd/*log
+/var/log/httpd/*/*log {
+    missingok
+    rotate 365
+    notifempty
+    sharedscripts
+    delaycompress
+    postrotate
+        /bin/systemctl reload httpd.service > /dev/null 2>/dev/null || true
+    endscript
+}
