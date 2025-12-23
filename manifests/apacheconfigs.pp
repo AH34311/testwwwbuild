@@ -13,7 +13,7 @@ class testwwwbuild::apacheconfigs {
       owner  => 'root',
       group  => 'root',
       mode   => '0644',
-      # notify => Service['httpd'],
+      notify => Service['httpd'],
     }
     file { "/var/log/httpd/${conf}":
       ensure => directory,
