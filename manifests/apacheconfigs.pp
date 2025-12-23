@@ -6,9 +6,13 @@ class testwwwbuild::apacheconfigs {
       default_value => {},
   })
 
-  $vhosts.each |String $conf, Hash $opts| {
-    file { "/etc/httpd/conf.d/${conf}":
-      source => "puppet:///modules/testwwwbuild/vhosts/${conf}",
+  $vhosts.each |String $conf| {
+    file { "/etc/httpd/conf.d/${conf}.conf":
+      ensure => file,
+      source => "puppet:///modules/testwwwbuild/vhosts/${conf}.conf",
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
       notify => Service['httpd'],
     }
     file { "/var/log/httpd/${conf}":
