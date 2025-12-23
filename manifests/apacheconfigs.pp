@@ -2,7 +2,7 @@ class testwwwbuild::apacheconfigs {
   file { '/etc/httpd/conf.d':
     ensure => directory,
   }
-  $vhosts = lookup('apacheconfigs::vhosts', {
+  $vhosts = lookup('testwwwbuild::vhosts', {
       default_value => {},
   })
 
