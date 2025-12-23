@@ -6,7 +6,7 @@ class testwwwbuild::apacheconfigs {
       default_value => {},
   })
 
-  $vhosts.each |String $conf| {
+  $vhosts.each |String $conf, Hash $params| {
     file { "/etc/httpd/conf.d/${conf}.conf":
       ensure => file,
       source => "puppet:///modules/testwwwbuild/vhosts/${conf}.conf",
@@ -17,6 +17,9 @@ class testwwwbuild::apacheconfigs {
     }
     file { "/var/log/httpd/${conf}":
       ensure => directory,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
     }
   }
 }
