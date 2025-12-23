@@ -9,7 +9,7 @@ class testwwwbuild::apacheconfigs {
   $vhosts.each |String $conf, Hash $params| {
     file { "/etc/httpd/conf.d/${conf}.conf":
       ensure => file,
-      source => "puppet:///modules/guppytestapacheconfigs/vhosts/${conf}.conf",
+      source => "puppet:///modules/apache_vhosts/vhosts/${conf}.conf",
       owner  => 'root',
       group  => 'root',
       mode   => '0644',
