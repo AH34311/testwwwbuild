@@ -30,7 +30,7 @@ class testwwwbuild::apacheconfigs {
   $maps.each |String $map, Hash $params| {
     file { "/etc/httpd/maps/${map}.txt":
       ensure  => file,
-      source  => "puppet:///modules/apache_vhosts/maps/${map}.txt",
+      source  => "puppet:///modules/testwwwbuild/maps/${map}.txt",
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
