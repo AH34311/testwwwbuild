@@ -8,18 +8,34 @@ class testwwwbuild::apacheconfigs {
 
   $vhosts.each |String $conf, Hash $params| {
     file { "/etc/httpd/conf.d/${conf}.conf":
-      ensure => file,
-      source => "puppet:///modules/apache_vhosts/vhosts/${conf}.conf",
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0644',
-      notify => Service['httpd'],
+      ensure  => file,
+      source  => "puppet:///modules/apache_vhosts/vhosts/${conf}.conf",
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      seltype => 'httpd_config_t',
+      notify  => Service['httpd'],
     }
     file { "/var/log/httpd/${conf}":
       ensure => directory,
       owner  => 'root',
       group  => 'root',
       mode   => '0755',
+    }
+  }
+  $maps = lookup('testwwwbuild::maps', {
+      default_value => {},
+  })
+
+  $maps.each |String $map, Hash $params| {
+    file { "/etc/httpd/maps/${map}.txt":
+      ensure  => file,
+      source  => "puppet:///modules/apache_vhosts/maps/${map}.txt",
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      seltype => 'httpd_config_t',
+      notify  => Service['httpd'],
     }
   }
 }
