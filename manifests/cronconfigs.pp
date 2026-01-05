@@ -1,4 +1,4 @@
-class testwwwbuild::cron {
+class testwwwbuild::cronconfigs {
   $crons = lookup('testwwwbuild::crons', {
       default_value => {},
   })
