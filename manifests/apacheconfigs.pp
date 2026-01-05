@@ -9,8 +9,8 @@ class testwwwbuild::apacheconfigs {
   $vhosts.each |String $conf, Hash $params| {
     file { "/etc/httpd/conf.d/${conf}.conf":
       ensure  => file,
-      #source  => "puppet:///modules/apache_vhosts/vhosts/${conf}.conf",
-      source  => "puppet:///modules/testwwwbuild/vhosts/${conf}.conf",
+      source  => "puppet:///modules/apache_vhosts/vhosts/${conf}.conf",
+      #source  => "puppet:///modules/testwwwbuild/vhosts/${conf}.conf",
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
@@ -31,7 +31,7 @@ class testwwwbuild::apacheconfigs {
   $maps.each |String $map, Hash $params| {
     file { "/etc/httpd/maps/${map}.txt":
       ensure  => file,
-      source  => "puppet:///modules/testwwwbuild/maps/${map}.txt",
+      source  => "puppet:///modules/apache_vhosts/maps/${map}.txt",
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
